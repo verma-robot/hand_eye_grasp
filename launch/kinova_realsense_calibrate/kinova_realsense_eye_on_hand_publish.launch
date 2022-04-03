@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<launch>
+    <arg name="eye_on_hand" default="true" doc="eye-on-hand instead of eye-on-base" />
+
+    <arg name="namespace" default="kinova_realsense_calibrate"/>
+
+    <arg name="namespace_prefix" default="$(arg namespace)_eye_on_hand" />
+
+    <!--arg if="$(arg eye_on_hand)" name="namespace_prefix" value="$(arg namespace_prefix)_eye_on_hand" />
+
+    <arg unless="$(arg eye_on_hand)" name="namespace_prefix" value="$(arg namespace_prefix)_eye_on_base" /-->
+
+    <arg name="robot_type" value="m1n6s200"/> <!-- robot type  -->
+
+    <arg name="camera_"      value="camera_on_hand" />
+
+    <!--it is possible to override the link names saved in the yaml file in case of name clashes, for example-->
+    <arg name="robot_effector_frame" default="$(arg robot_type)_end_effector" />
+
+    <!--arg unless="$(arg eye_on_hand)" name="robot_base_frame" default="$(arg robot_type)_link_base" /-->
+
+    <arg name="tracking_base_frame" default="$(arg camera_)_link" />
+    
+    <arg name="inverse" default="false" />
+    
+    <!--publish hand-eye calibration-->
+    <group ns="$(arg namespace_prefix)">
+
+        <param name="eye_on_hand" value="$(arg eye_on_hand)" />
+
+        <!--param unless="$(arg eye_on_hand)" name="robot_base_frame" value="$(arg robot_base_frame)" /-->
+
+        <param  name="robot_effector_frame" value="$(arg robot_effector_frame)" />
+
+        <param name="tracking_base_frame" value="$(arg tracking_base_frame)" />
+
+        <param name="inverse" value="$(arg inverse)" />
+
+        <node name="$(anon handeye_publisher)" pkg="easy_handeye" type="publish.py" output="screen"/>
+    </group>
+</launch>

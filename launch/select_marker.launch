@@ -1,0 +1,13 @@
+<launch>
+
+    <arg name="target_frame" default="m1n6s200_link_base"/>
+
+ <arg name="dir" value="$(find hand_eye_grasp)/marker.yaml" />
+ <arg name="marker_sub" value="/all_markers_objects_on_$(arg target_frame)" />
+
+ <node pkg="hand_eye_grasp" type="marker_possible_place" name="marker_possible_place" output="screen" >       
+         <param name="dir" value="$(arg dir)" />
+        <param name="marker_sub" value="$(arg marker_sub)" />
+ </node>
+
+</launch>

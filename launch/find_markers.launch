@@ -1,0 +1,54 @@
+<launch>
+
+    <arg name="marker1Id"         default="10"/>
+    <arg name="marker2Id"         default="15"/>
+    <arg name="marker3Id"         default="25"/>
+    <arg name="marker4Id"         default="45"/>
+
+    <arg name="camera_"      value="camera_on_hand" />
+
+    <arg name="ref_frame"       default="$(arg camera_)_link"/>  <!-- leave empty and the pose will be published wrt param parent_name -->
+    <arg name="markerSize"        default="0.1"/>    <!-- in m -->
+
+
+    <arg name="eye"               default="left"/>
+    <arg name="dct_normalization" default="False" />
+    <arg name="dct_filter_size"   default="4" />
+
+    <arg name="marker10_frame"     default="camera_marker_10_frame" />
+    <arg name="marker15_frame"     default="camera_marker_15_frame" />
+    <arg name="marker25_frame"     default="camera_marker_25_frame" />
+    <arg name="marker45_frame"     default="camera_marker_45_frame" />
+
+    <arg name="marker_topic_pub" value="/markers_object_on_camera_frame" />
+
+    <node pkg="hand_eye_grasp" type="find_four_aruco_marker_four" name="find_four_aruco_marker_four">    
+
+        <remap from="/camera_info" to="$(arg camera_)/color/camera_info" />
+        <remap from="/image" to="$(arg camera_)/color/image_raw" />
+
+        <param name="image_is_rectified" value="True"/>
+        <param name="marker_size" value="$(arg markerSize)"/>
+        <param name="marker_id10" value="$(arg marker1Id)"/>
+        <param name="marker_id15" value="$(arg marker2Id)"/>
+        <param name="marker_id25" value="$(arg marker3Id)"/>
+        <param name="marker_id45" value="$(arg marker4Id)"/>
+
+        <param name="marker_topic" value="$(arg marker_topic_pub)" />
+
+        <param name="normalizeImage" value="$(arg dct_normalization)"/>
+        <param name="dct_components_to_remove" value="$(arg dct_filter_size)"/>
+        <param name="reference_frame"    value="$(arg ref_frame)"/>   <!-- frame in which the marker pose will be refered -->
+
+        <param name="parent_name" value="$(arg camera_)_color_optical_frame"/>
+
+        <param name="child_name10" value="$(arg marker10_frame)" />
+        <param name="child_name15" value="$(arg marker15_frame)" />
+        <param name="child_name25" value="$(arg marker25_frame)" />
+        <param name="child_name45" value="$(arg marker45_frame)" />
+    </node>
+
+ 
+
+</launch>
+

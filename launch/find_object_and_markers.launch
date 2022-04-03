@@ -1,0 +1,30 @@
+<launch>
+
+    <arg name="target_frame" default ="m1n6s200_link_base" />
+
+    <arg name="all_marker_on_target_frame" default ="/all_markers_objects_on_$(arg target_frame)" />
+
+    <arg name="markers_object_on_camera_frame" default ="/markers_object_on_camera_frame" />
+
+
+    <include file="$(find hand_eye_grasp)/launch/find_markers.launch" >
+
+              <param name="marker_topic_pub" value="$(arg markers_object_on_camera_frame)" />
+
+    </include>
+
+    <include file="$(find hand_eye_grasp)/launch/find_object.launch" >
+
+              <param name="marker_topic_pub" value="$(arg markers_object_on_camera_frame)" />
+
+    </include>
+
+    <include file="$(find hand_eye_grasp)/launch/translate_markers_to_target_frame.launch" >
+
+              <param name="all_marker_on_camera_frame" value="$(arg markers_object_on_camera_frame)" />
+              <param name="all_marker_on_target_frame" value="$(arg all_marker_on_target_frame)" />
+              <param name="target_frame" value="$(arg target_frame)" />
+
+    </include>
+
+</launch>

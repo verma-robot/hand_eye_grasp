@@ -1,0 +1,28 @@
+<launch>  
+  
+    <arg name="robot_type" value="m1n6s200"/> 
+    <arg name="moveit_sensor_manager" value="realsense"/> 
+
+    <arg name="allow_trajectory_execution" value="true"/> 
+
+    <include file="$(find kinova_bringup)/launch/kinova_robot.launch">
+        <param name="kinova_robotType" value="$(arg robot_type)"/>
+    </include>
+
+    <include file="$(find hand_eye_grasp)/launch/realsense_bringup/camera_on_hand_rgbd.launch" /> 
+
+
+    <include file="$(find hand_eye_grasp)/launch/kinova_realsense_calibrate/kinova_realsense_eye_on_hand_publish.launch" >   
+        <param name="robot_type" value="$(arg robot_type)"/>
+        
+    </include>
+   
+    <include file="$(find m1n6s200_moveit_config)/launch/m1n6s200_demo.launch" />  
+
+    <include file="$(find hand_eye_grasp)/launch/find_object_and_markers.launch" />  
+
+    <include file="$(find hand_eye_grasp)/launch/filter_cloud.launch" />  
+
+     
+</launch>
+

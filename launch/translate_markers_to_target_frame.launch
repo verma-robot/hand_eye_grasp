@@ -1,0 +1,18 @@
+<launch>
+
+    <arg name="target_frame" default="m1n6s200_link_base"/>
+    <arg name="all_marker_on_target_frame" value="/all_markers_objects_on_$(arg target_frame)" />
+    <arg name="all_marker_on_camera_frame" value="/markers_object_on_camera_frame" />
+ 
+    <node pkg="hand_eye_grasp" type="translate_markers_to_target_frame" name="translate_markers_to_target_frame" output="screen">   
+              <param name="target_frame" value="$(arg target_frame)" />
+              <param name="all_marker_on_camera_frame" value="$(arg all_marker_on_camera_frame)" />
+              <param name="all_marker_on_target_frame" value="$(arg all_marker_on_target_frame)" />
+
+              <param name="tf_wait_max_time" value="0.5" />          
+              <param name="min_distance" value="0.2" />          
+              <param name="max_distance" value="0.8" />          
+
+
+    </node>   
+</launch>

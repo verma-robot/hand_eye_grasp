@@ -1,0 +1,16 @@
+<launch>
+
+
+    <!--arg name="camera" default="camera_on_hand" /-->
+
+    <arg name="sub_cloud_topic_name" default="/camera_on_hand/depth_registered/points"/>
+    <arg name="pub_cloud_topic_name" value="/camera_filtered_points" />
+    <arg name="voxel_filtered" value="0.01" />
+
+    <node pkg="hand_eye_grasp" type="filter_cloud" name="filter_cloud" output="screen">   
+              <param name="sub_cloud_topic_name" value="$(arg sub_cloud_topic_name)" />
+              <param name="pub_cloud_topic_name" value="$(arg pub_cloud_topic_name)" />
+              <param name="voxel_filtered" value="$(arg voxel_filtered)" />          
+
+    </node>   
+</launch>

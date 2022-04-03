@@ -1,0 +1,36 @@
+<launch>
+    
+
+    <arg name="target_frame" default ="m1n6s200_link_base" />
+
+    <arg name="marker_topic_name" default ="/all_markers_objects_on_$(arg target_frame)" />
+
+    <arg name="plan_max_tries" default="5"/>
+    <arg name="sub_pose_topic_name" default="/m1n6s200_driver/out/tool_pose"/>
+    <arg name="sub_joints_topic_name" default="/m1n6s200_driver/out/joint_state"/>
+    <arg name="finger_action_name" default="/m1n6s200_driver/fingers_action/finger_positions"/>
+    <arg name="camera_original_frame" default="camera_on_hand_aligned_depth_to_color_frame"/>
+    <arg name="arm_group_name" default="arm"/>
+    <arg name="gripper_group_name" default="gripper"/>
+    <arg name="effector_name" default="m1n6s200_end_effector"/>
+
+
+
+      <node name="rviz" pkg="rviz" type="rviz" args="-d $(find hand_eye_grasp)/config/moveit.rviz" />
+    <node pkg="hand_eye_grasp" type="pick_place_on_markers_demo" name="pick_place_on_markers_demo"   output="screen">
+          <rosparam file="$(find hand_eye_grasp)/marker.yaml" command="load" />
+              <param name="marker_topic_name" value="$(arg marker_topic_name)" />          
+               <param name="plan_max_tries" value="$(arg plan_max_tries)" />          
+              <param name="sub_pose_topic_name" value="$(arg sub_pose_topic_name)" />          
+              <param name="sub_joints_topic_name" value="$(arg sub_joints_topic_name)" />          
+              <param name="finger_action_name" value="$(arg finger_action_name)" />          
+              <param name="camera_original_frame" value="$(arg camera_original_frame)" />          
+         
+              <param name="arm_group_name" value="$(arg arm_group_name)" />          
+              <param name="gripper_group_name" value="$(arg gripper_group_name)" />          
+              <param name="effector_name" value="$(arg effector_name)" />          
+
+
+    </node>
+
+</launch>

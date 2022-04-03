@@ -1,0 +1,25 @@
+<launch>
+
+
+    <!--arg name="camera" default="camera_on_hand" /-->
+    <arg name="camera_name" default="camera_on_hand"/>
+
+    <arg name="color_image" default="/camera_on_hand/color/image_raw"/>
+    <arg name="depth_image" value="/camera_on_hand/aligned_depth_to_color/image_raw" />
+    <arg name="camera_info_data" value="/camera_on_hand/aligned_depth_to_color/camera_info" />
+    <arg name="marker_topic_pub" value="/markers_object_on_camera_frame" />
+
+    <node pkg="hand_eye_grasp" type="find_object" name="find_object" output="screen">   
+              <param name="color_image" value="$(arg color_image)" />
+              <param name="depth_image" value="$(arg depth_image)" />
+              <param name="camera_info_data" value="$(arg camera_info_data)" />
+              <param name="topic_pub_name" value="$(arg marker_topic_pub)" />
+              <param name="min_point_number" value="80" />
+              <param name="min_point_area" value="400" />
+
+
+    </node>
+
+
+   
+</launch>
