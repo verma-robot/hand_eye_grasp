@@ -12,6 +12,7 @@
     完成后Ctrl+C杀掉该进程
 
 第二步、启动机械臂、摄像头，以及手眼标定关系
+
    
    roslaunch hand_eye_grasp bringup_eye_on_hand.launch 
    
