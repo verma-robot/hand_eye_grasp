@@ -22,5 +22,6 @@
 
 
 备注1（非常重要）：需要根据机械臂型号对程序进行修改
-备注2：部分参数需要在程序中进行优化，主要在pick_place_on_markers_demo.cpp /              pick_placecpp 及各个launch文件中进行
+
+备注2：部分参数需要在程序中进行优化，主要在pick_place_on_markers_demo.cpp / pick_placecpp 及各个launch文件中进行
 
