@@ -14,11 +14,11 @@
 
 第三步、寻找Marker点坐标，（需保持机械臂底座与Marker点的相对位置不变）
     roslaunch hand_eye_grasp select_marker.launch
-    根据提示完成后Ctrl+C杀掉该进程，Marker点相对机械臂底座的坐标保存在文件home/..../hand_eye_grasp/marker.yaml中
+        根据提示完成后Ctrl+C杀掉该进程，Marker点相对机械臂底座的坐标保存在文件home/..../hand_eye_grasp/marker.yaml中
 
 第四步、抓取木块：
     roslaunch hand_eye_grasp pick_place_demo.launch
-    根据提示完成木块选择、marker选择，并完成抓取动作；
+        根据提示完成木块选择、marker选择，并完成抓取动作；
 
 
 备注1（非常重要）：需要根据机械臂型号对程序进行修改
